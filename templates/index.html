@@ -16,10 +16,19 @@
 <body>
   <div class="wrap">
     <div class="card">
-      <img src="{{ foto_url }}" alt="Foto del gruppo">
+      <img id="slideshow" src="{{ foto_url[0] }}" alt="Foto del gruppo">
       <h1>Auguri, Evan!</h1>
-      <p>Un saluto dal gruppo 🎉</p>
+      <p>Un saluto dalla SSAM 🎉</p>
     </div>
   </div>
+  <script>
+  const images = {{ foto_url|tojson }};
+  let i = 0;
+  setInterval(() => {
+    i = (i + 1) % images.length;
+    document.getElementById("slideshow").src = images[i];
+  }, 3000); // cambia immagine ogni 3 secondi
+</script>
+
 </body>
 </html>

@@ -4,10 +4,11 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def home():
-    # il file statico si chiama 'foto_gruppo.jpg' nella cartella static/
-    foto_url = url_for('static', filename='foto_gruppo.jpg')
+    # Lista di tutte le immagini nella cartella static
+    foto_lista = ["foto1.jpg", "foto2.jpg", "foto3.jpg"]  # metti qui i nomi dei file reali
+    # Genera gli URL completi per il template
+    foto_url = [url_for('static', filename=foto) for foto in foto_lista]
     return render_template('index.html', foto_url=foto_url)
 
 if __name__ == '__main__':
-    # per sviluppo: http://127.0.0.1:5000
     app.run(host='0.0.0.0', port=5000, debug=True)
